@@ -1,4 +1,5 @@
 #include <gb/gb.h>
+#include <rand.h>
 #include <stdio.h>
 #include "util.c"
 #include "backgrounds/temp_splash_data.c"
@@ -7,7 +8,7 @@
 #include "backgrounds/credits_map.c"
 
 void main() {
-    int count = 0;
+    int number = 0;
 
     set_bkg_data(0, 103, temp_splash_data);
     set_bkg_tiles(0, 0, 20, 18, temp_splash_map);
@@ -28,7 +29,11 @@ void main() {
     while (TRUE) {
         // Game Loop Goes Here
         printf("%d\n", count);
-        count++;
+        number = rand() % 10 + 1;
+        if (number < 0) {
+            number *= -1;
+        }
+        printf("%d\n", number);
         performantdelay(10);
     }
 }
